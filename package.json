@@ -1,0 +1,24 @@
+{
+  "name": "react-next-admin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jss": "^9.5.0",
+    "material-ui": "^1.0.0-beta.27",
+    "material-ui-icons": "^1.0.0-beta.17",
+    "next": "^4.2.1",
+    "prop-types": "^15.6.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-jss": "^8.2.1"
+  }
+}
