@@ -4,10 +4,10 @@ import { withStyles } from 'material-ui/styles';
 import withRoot from '../src/helpers/with-root';
 import PropTypes from "prop-types";
 import DefaultLayout from "../src/layouts/DefaultLayout";
-import {addCount, initStore} from "../src/redux/store";
+import {addCount} from "../src/redux/countReducer";
 import {bindActionCreators} from "redux";
-import withRedux from "next-redux-wrapper";
 import AddCount from "../src/components/AddCount";
+import Link from "next/link";
 
 const styles = theme => ({
   root: {
@@ -18,7 +18,7 @@ const styles = theme => ({
 class Index extends React.Component {
 
   static getInitialProps ({store, isServer}) {
-    store.dispatch(addCount());
+    // store.dispatch(addCount());
   }
 
   changeDirection() {
@@ -27,7 +27,6 @@ class Index extends React.Component {
 
   render() {
     const {classes} = this.props;
-    console.log(this.props);
     return (
       <div className={classes.root}>
         <DefaultLayout>
@@ -35,6 +34,9 @@ class Index extends React.Component {
           <AddCount/>
           <Button raised color="primary">I am a Primary Button </Button>
           <Button raised color="accent" onClick={this.changeDirection}> Change Direction </Button>
+          <Link href={`/other`}>
+            <a>Other Page</a>
+          </Link>
         </DefaultLayout>
       </div>
     );
@@ -51,6 +53,4 @@ Index.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-
-export default withRedux(initStore, null, mapDispatchToProps)((withRoot(withStyles(styles)(Index))));
-// export default withRedux(initStore, null, mapDispatchToProps)(Index);
+export default withRoot(withStyles(styles)(Index));

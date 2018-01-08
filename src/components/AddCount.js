@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { addCount } from '../redux/store'
+import { addCount } from '../redux/countReducer'
 
 class AddCount extends Component {
   add = () => {
@@ -9,14 +9,9 @@ class AddCount extends Component {
   }
 
   render () {
-    const { count } = this.props
+    const { count } = this.props;
     return (
       <div>
-        <style jsx>{`
-          div {
-            padding: 0 0 20px 0;
-          }
-      `}</style>
         <h1>AddCount: <span>{count}</span></h1>
         <button onClick={this.add}>Add To Count</button>
       </div>
@@ -25,7 +20,7 @@ class AddCount extends Component {
 }
 
 // const mapStateToProps = ({ count }) => ({ count })
-const mapStateToProps = (state) => (state);
+const mapStateToProps = ({count}) => ({count});
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -33,4 +28,8 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddCount)
+export default connect(
+  state => ({
+    count: state.count.count
+  })
+  , mapDispatchToProps)(AddCount)
