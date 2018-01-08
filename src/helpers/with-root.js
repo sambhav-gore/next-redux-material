@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { MuiThemeProvider } from 'material-ui/styles';
-import Reboot from 'material-ui/Reboot';
+import AppWrapper from "./AppWrapper";
 import getPageContext from './get-page-context';
 import initRedux from "../redux/initRedux"
 import {Provider} from "react-redux";
@@ -17,30 +16,17 @@ function withRoot(Component) {
       this.pageContext = this.props.pageContext || getPageContext();
     }
 
-    componentDidMount() {
-      // Remove the server-side injected CSS.
-      const jssStyles = document.querySelector('#jss-server-side');
-      if (jssStyles && jssStyles.parentNode) {
-        jssStyles.parentNode.removeChild(jssStyles);
-      }
-    }
-
     pageContext = null;
     redux = null;
 
     render() {
+      const { pageContext, ...other } = this.props;
 
-      // MuiThemeProvider makes the theme available down the React tree thanks to React context.
       return (
         <Provider store={this.redux}>
-          <MuiThemeProvider
-            theme={this.pageContext.theme}
-            sheetsManager={this.pageContext.sheetsManager}
-          >
-            {/* Reboot kickstart an elegant, consistent, and simple baseline to build upon. */}
-            <Reboot />
-            <Component {...this.props} />
-          </MuiThemeProvider>
+          <AppWrapper pageContext={pageContext}>
+            <Component initialProps={other} />
+          </AppWrapper>
         </Provider>
       );
     }

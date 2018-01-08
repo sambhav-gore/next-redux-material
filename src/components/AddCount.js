@@ -2,10 +2,19 @@ import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { addCount } from '../redux/countReducer'
+import { changeDirection, changePrimary } from '../redux/themeReducer'
 
 class AddCount extends Component {
   add = () => {
     this.props.addCount()
+  }
+
+  changeDirection = () => {
+    this.props.changeDirection();
+  }
+
+  changePrimary = () => {
+    this.props.changePrimary();
   }
 
   render () {
@@ -14,6 +23,8 @@ class AddCount extends Component {
       <div>
         <h1>AddCount: <span>{count}</span></h1>
         <button onClick={this.add}>Add To Count</button>
+        <button onClick={this.changeDirection}>Change Direction</button>
+        <button onClick={this.changePrimary}>Change Color</button>
       </div>
     )
   }
@@ -24,7 +35,9 @@ const mapStateToProps = ({count}) => ({count});
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addCount: bindActionCreators(addCount, dispatch)
+    addCount: bindActionCreators(addCount, dispatch),
+    changeDirection: bindActionCreators(changeDirection, dispatch),
+    changePrimary: bindActionCreators(changePrimary, dispatch)
   }
 }
 

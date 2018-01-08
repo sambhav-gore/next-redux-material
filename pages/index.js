@@ -17,14 +17,6 @@ const styles = theme => ({
 
 class Index extends React.Component {
 
-  static getInitialProps ({store, isServer}) {
-    // store.dispatch(addCount());
-  }
-
-  changeDirection() {
-    // store.dispatch(changeDirection());
-  }
-
   render() {
     const {classes} = this.props;
     return (
@@ -33,7 +25,7 @@ class Index extends React.Component {
           <h1>welcome to Next!</h1>
           <AddCount/>
           <Button raised color="primary">I am a Primary Button </Button>
-          <Button raised color="accent" onClick={this.changeDirection}> Change Direction </Button>
+          <Button raised color="accent"> Change Direction </Button>
           <Link href={`/other`}>
             <a>Other Page</a>
           </Link>
