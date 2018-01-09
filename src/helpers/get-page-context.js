@@ -2,8 +2,7 @@
 
 import { SheetsRegistry } from 'jss';
 import { createMuiTheme, createGenerateClassName } from 'material-ui/styles';
-import defaultTheme from "../theming/themeConfig";
-import orange from "material-ui/colors/orange";
+import themeConfig from "../theming/themeConfig";
 
 // A theme with custom primary and secondary color.
 // It's optional.
@@ -11,15 +10,10 @@ import orange from "material-ui/colors/orange";
 
 
 export function getTheme(theme) {
-  return createMuiTheme({
-    palette: {
-      primary: orange,
-      type: theme.paletteType
-    }
-  });
+  return createMuiTheme(theme);
 }
 
-const theme = getTheme(defaultTheme);
+const theme = getTheme(themeConfig);
 
 function createPageContext() {
   return {

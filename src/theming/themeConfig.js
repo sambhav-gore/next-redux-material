@@ -1,5 +1,8 @@
 
 export default {
   direction: "ltr",
-  paletteType: "light"
+  palette: {
+    foo: "bar",
+    type: "light"
+  }
 }

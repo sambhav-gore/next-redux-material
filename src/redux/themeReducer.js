@@ -1,28 +1,28 @@
 import initialState from "../theming/themeConfig";
 
 export const actionTypes = {
-  CHANGE_DIRECTION: "CHANGE_DIRECTION",
-  CHANGE_PRIMARY: "CHANGE_PRIMARY"
+  TOGGLE_DIRECTION: "TOGGLE_DIRECTION",
+  TOGGLE_TYPE: "TOGGLE_TYPE"
 };
 
-export const changeDirection = () => dispatch => {
-  return dispatch({type: actionTypes.CHANGE_DIRECTION});
+export const toggleDirection = () => dispatch => {
+  return dispatch({type: actionTypes.TOGGLE_DIRECTION});
 };
 
-export const changePrimary = () => dispatch => {
-  return dispatch({type: actionTypes.CHANGE_PRIMARY});
+export const toggleType = () => dispatch => {
+  return dispatch({type: actionTypes.TOGGLE_TYPE});
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.CHANGE_DIRECTION:
+    case actionTypes.TOGGLE_DIRECTION:
       return Object.assign({}, state, {
         direction: state.direction === "ltr" ? "rtl" : "ltr"
       });
-    case actionTypes.CHANGE_PRIMARY:
-      return Object.assign({}, state, {
-        paletteType: "dark"
-      });
+    case actionTypes.TOGGLE_TYPE:
+      let newState = Object.assign({}, state);
+      newState.palette.type = newState.palette.type === "light" ? "dark" : "light";
+      return newState;
     default:
       return state;
   }

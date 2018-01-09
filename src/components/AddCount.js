@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { addCount } from '../redux/countReducer'
-import { changeDirection, changePrimary } from '../redux/themeReducer'
+import { toggleDirection, toggleType } from '../redux/themeReducer'
 
 class AddCount extends Component {
   add = () => {
@@ -36,8 +36,8 @@ const mapStateToProps = ({count}) => ({count});
 const mapDispatchToProps = (dispatch) => {
   return {
     addCount: bindActionCreators(addCount, dispatch),
-    changeDirection: bindActionCreators(changeDirection, dispatch),
-    changePrimary: bindActionCreators(changePrimary, dispatch)
+    changeDirection: bindActionCreators(toggleDirection, dispatch),
+    changePrimary: bindActionCreators(toggleType, dispatch)
   }
 }
 
